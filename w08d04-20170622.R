@@ -877,7 +877,8 @@ pub_scaled=select(pub_scaled,-Salary)        #removes predictor from df
 grep(pattern = "Salary",x = colnames(pub_scaled)) #only one column
 
 sm_cvglm=cv.glmnet(x=as.matrix(pub_scaled),y=t_scaled,nfolds=5)
-sm_cvglm
+sm_cvglm$glmnet.fit
+
 coef(sm_cvglm,s='lambda.min')
 cv_coefs=as.matrix(coef(sm_cvglm,s='lambda.min'))
 cv_coefs=as.data.frame(cv_coefs)
